@@ -1,11 +1,11 @@
-// Object.create({}) will clone Object.prototype
-// and inherit all object properties
-// Object.create(null) will create a complete empty object
-// without any object method.
+/*
+Object.create({}) will clone Object.prototype
+and inherit all object properties
+Object.create(null) will create a complete empty object
+without any object method.
+*/
 const obj = Object.create({});
 const obj2 = Object.create(null);
-// obj.hasOwnProperty('x');
-// obj2.hasOwnProperty('x');
 
 /*
 Approach 1
@@ -29,11 +29,14 @@ function personCreator(firstName, lastName, age) {
 
 const personOne = personCreator('Alaa', 'Ahmad', 30);
 
-// Approach 2
-// Creating objects with factory function && Object.create()
-// In This approach we store all methods in another object
-// and link the new created object to this object with the
-// __proto__ (the hidden bond up)
+/*
+Approach 2
+----------
+Creating objects with factory function && Object.create()
+In This approach we store all methods in another object
+and link the new created object to this object with the
+__proto__ (the hidden bond up)
+*/
 function userCreator(firstName, lastName, age) {
   const newUser = Object.create(userFunctionStore);
   newUser.firstName = firstName;
@@ -50,10 +53,13 @@ const userFunctionStore = {
 
 const userOne = userCreator('Alaa', 'Ahmad', 30);
 
-// Approach 3
-// Creating objects with the new keyword.
-// prototype (a big old empty object) is created by default
-// when we invoke a function (function-object combo).
+/*
+Approach 3
+----------
+Creating objects with the new keyword.
+prototype (a big old empty object) is created by default
+when we invoke a function (function-object combo).
+*/
 function Developer(firstName, lastName, age) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -76,18 +82,22 @@ Counter.prototype.addCount = function () {
     console.log(`Count is ${this.count++}.`);
   }
 
-  // this here refers to that which,
-  // was assigner to this which refers to the created
-  // counter object.
+  /*
+  this here refers to that which,
+  was assigner to this which refers to the created
+  counter object.
+  */
   const that = this;
   function addOneWithRegularFuncAndThat() {
     console.log(`Count is ${that.count++}.`);
   }
 
-  // this here refers to the this from where it was born.
-  // static (lexical scoped)
-  // Lexical static scope means => where I was born,
-  // saved means what this will refers to.
+  /*
+  this here refers to the this from where it was born.
+  static (lexical scoped)
+  Lexical static scope means => where I was born,
+  saved means what this will refers to.
+  */
   const addOneWithArrowFunc = () => {
     console.log(`Count is ${this.count++}.`);
   };
@@ -115,7 +125,10 @@ const bmwCar = new Car('BMW', 100, 'red');
 
 ///// Sub-classing in JavaScript \\\\\
 
-// Approach 1 with Factory Functions
+/*
+Approach 1 with Factory Functions
+---------------------------------
+*/
 function accountCreator(name, isPaid) {
   const account = Object.create(accountFunctions);
   account.name = name;
@@ -148,7 +161,10 @@ Object.setPrototypeOf(paidAccountFunctions, accountFunctions);
 
 const paidAccount = paidAccountCreator('Ahmad', true, 100);
 
-// Approach 2 with new keyword
+/*
+Approach 2 with new keyword
+---------------------------
+*/
 function Teacher(name, age) {
   this.name = name;
   this.age = age;
@@ -170,7 +186,10 @@ MathTeacher.prototype.getType = function () {
 
 const mathTeacher = new MathTeacher('Alaa', 30, 'Math');
 
-// Approach 3 with ES2015 class
+/*
+Approach 3 with ES6 class
+----------------------------
+*/
 class Person {
   constructor(firstName, lastName) {
     this.firstName = firstName;
