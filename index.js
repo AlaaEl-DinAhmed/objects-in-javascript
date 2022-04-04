@@ -7,12 +7,15 @@ const obj2 = Object.create(null);
 // obj.hasOwnProperty('x');
 // obj2.hasOwnProperty('x');
 
-// Approach 1
-// Creating objects with factory function && object literal
-// This approach is untenable as we store
-// getFullName method on every single object
-// created with personCreator function
-// and this is anti-pattern with memory.
+/*
+Approach 1
+----------
+Creating objects with factory function && object literal
+This approach is untenable as we store
+getFullName method on every single object
+created with personCreator function
+and this is anti-pattern with memory.
+*/
 function personCreator(firstName, lastName, age) {
   const newPerson = {};
   newPerson.firstName = firstName;
